@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+
+android {
+    compileSdkVersion Releases.compileSdk
+    buildToolsVersion Versions.buildTools
+
+    defaultConfig {
+        applicationId "agnusin.com.conferenceroom"
+        minSdkVersion Releases.minSdk
+        targetSdkVersion Releases.targetSdk
+        versionCode Releases.versionCode
+        versionName Releases.versionName
+
+        renderscriptTargetApi 21
+        renderscriptSupportModeEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+        enabledForTests = true
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation Libraries.kotlin
+    implementation Libraries.coroutines
+    implementation Libraries.koin
+
+    implementation CompatLibraries.appcompat
+    implementation CompatLibraries.constraintlayout
+    implementation CompatLibraries.fragment
+    implementation CompatLibraries.design
+
+    implementation KtxLibraries.fragment
+    implementation KtxLibraries.lifecycle
+    implementation KtxLibraries.core
+    implementation KtxLibraries.navigation
+
+    testImplementation TestLibraries.junit
+    testImplementation TestLibraries.testRunner
+    androidTestImplementation TestLibraries.espresso
+}

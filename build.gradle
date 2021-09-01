@@ -1,0 +1,20 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    DependenciesKt.addRepositories(repositories)
+    dependencies {
+        classpath ProjectDeps.androidGradlePlugin
+        classpath ProjectDeps.kotlinGradlePlugin
+        classpath ProjectDeps.navigationArgs
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    DependenciesKt.addRepositories(repositories)
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
